@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Chores Master</string>
+    <string name="title_activity_character_screen">CharacterScreen</string>
+</resources>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharacterScreen">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="211dp"
+        android:layout_height="208dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/xpBar"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?android:attr/galleryItemBackground" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="102dp"
+        app:layout_constraintBottom_toTopOf="@+id/choresList"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="?android:attr/galleryItemBackground" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?android:attr/galleryItemBackground" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="102dp"
+        app:layout_constraintBottom_toTopOf="@+id/choresList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:srcCompat="?android:attr/galleryItemBackground" />
+
+    <ProgressBar
+        android:id="@+id/xpBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="203dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="105dp"
+        app:layout_constraintBottom_toTopOf="@+id/hpBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6" />
+
+    <ProgressBar
+        android:id="@+id/hpBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="203dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="105dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/xpBar" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XP"
+        app:layout_constraintEnd_toEndOf="@+id/xpBar"
+        app:layout_constraintStart_toStartOf="@+id/xpBar"
+        app:layout_constraintTop_toTopOf="@+id/xpBar" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HP"
+        app:layout_constraintEnd_toEndOf="@+id/hpBar"
+        app:layout_constraintStart_toStartOf="@+id/hpBar"
+        app:layout_constraintTop_toTopOf="@+id/hpBar" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="37dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="57dp"
+        app:layout_constraintBottom_toTopOf="@+id/choresList"
+        app:layout_constraintEnd_toStartOf="@+id/xpBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/gallery_thumb" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="37dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/choresList"
+        app:layout_constraintEnd_toStartOf="@+id/hpBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/gallery_thumb" />
+
+    <Button
+        android:id="@+id/addChoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Add Chore"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/shopButton"
+        app:layout_constraintTop_toBottomOf="@+id/choresList" />
+
+    <ListView
+        android:id="@+id/choresList"
+        android:layout_width="395dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/shopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="launchShop"
+        android:text="Shop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addChoreButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choresList" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
