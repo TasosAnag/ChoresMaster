@@ -28,5 +28,5 @@ public class CharacterScreen extends AppCompatActivity {
         Intent i = new Intent(this, Shop.class);
         startActivity(i);
 
-    })
+    }
 }
