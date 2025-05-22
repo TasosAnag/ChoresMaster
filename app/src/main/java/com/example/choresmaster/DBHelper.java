@@ -52,13 +52,17 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Add a new user
-    public long addUser(String name, String gender) {
+    public void insertUser(String name, String gender) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
         values.put("gender", gender);
-        return db.insert("User", null, values);
+        values.put("level", 1);
+        values.put("xp", 0);
+        values.put("coins", 0);
+        db.insert("user", null, values);
     }
+
 
     // Add a chore
     public long addChore(String description) {
@@ -99,5 +103,25 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
     }
 
-    // Other helper functions to retrieve user, items, chores etc.
+    public Cursor getUser() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM user LIMIT 1", null);
+    }
+
+    public Cursor getAllChores() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM Chores", null);
+    }
+
+    public Cursor getInventory() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM Inventory", null);
+    }
+
+    public Cursor getItems() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM Items", null);
+    }
+
+
 }
