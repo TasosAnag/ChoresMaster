@@ -1,167 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CharacterScreen">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/characterImg"
-        android:layout_width="211dp"
-        android:layout_height="208dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/xpBar"
-        app:layout_constraintEnd_toStartOf="@+id/itemRU"
-        app:layout_constraintStart_toEndOf="@+id/itemLU"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/itemLU"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/itemLL"
-        app:layout_constraintEnd_toStartOf="@+id/characterImg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/galleryItemBackground" />
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-    <ImageView
-        android:id="@+id/itemLL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="102dp"
-        app:layout_constraintBottom_toTopOf="@+id/choresList"
-        app:layout_constraintEnd_toStartOf="@+id/characterImg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemLU"
-        app:srcCompat="?android:attr/galleryItemBackground" />
+        <!-- Name & Level -->
+        <TextView
+            android:id="@+id/textViewNameLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name - Level 1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
 
-    <ImageView
-        android:id="@+id/itemRU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/itemRL"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/characterImg"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/galleryItemBackground" />
+        <!-- Character Image -->
+        <ImageView
+            android:id="@+id/imageViewCharacter"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="Character" />
 
-    <ImageView
-        android:id="@+id/itemRL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="102dp"
-        app:layout_constraintBottom_toTopOf="@+id/choresList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/characterImg"
-        app:layout_constraintTop_toBottomOf="@+id/itemRU"
-        app:srcCompat="?android:attr/galleryItemBackground" />
+        <!-- XP Bar -->
+        <ProgressBar
+            android:id="@+id/progressBarXP"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:max="100"
+            android:progress="0"
+            android:layout_marginBottom="16dp" />
 
-    <ProgressBar
-        android:id="@+id/xpBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="203dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="42dp"
-        app:layout_constraintBottom_toTopOf="@+id/choresList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/characterImg" />
+        <!-- Item Slots (Simple image views) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
 
-    <TextView
-        android:id="@+id/xpText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="XP"
-        app:layout_constraintBottom_toBottomOf="@+id/xpBar"
-        app:layout_constraintEnd_toEndOf="@+id/xpBar"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/xpBar"
-        app:layout_constraintTop_toTopOf="@+id/xpBar"
-        app:layout_constraintVertical_bias="0.037" />
+            <ImageView android:id="@+id/itemSlot1" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
+            <ImageView android:id="@+id/itemSlot2" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
+            <ImageView android:id="@+id/itemSlot3" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
+            <ImageView android:id="@+id/itemSlot4" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
+        </LinearLayout>
 
-    <ListView
-        android:id="@+id/choresList"
-        android:layout_width="395dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="88dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <!-- Chores List -->
+        <TextView
+            android:text="Your Chores:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/shopButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"
-        android:onClick="launchShop"
-        android:text="Shop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choresList" />
-
-    <TextView
-        android:id="@+id/lvlText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Lvl. 1"
-        app:layout_constraintBottom_toTopOf="@+id/characterImg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addChore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toEndOf="@+id/shopButton"
-        app:layout_constraintTop_toBottomOf="@+id/choresList"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-    <ImageButton
-        android:id="@+id/addXP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="42dp"
-        app:layout_constraintBottom_toTopOf="@+id/choresList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/xpBar"
-        app:layout_constraintTop_toBottomOf="@+id/itemRL"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/choresContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>

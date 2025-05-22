@@ -29,4 +29,6 @@ public class CharacterScreen extends AppCompatActivity {
         startActivity(i);
 
     }
+
+
 }
