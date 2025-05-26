@@ -1,77 +1,101 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- Character Info Section -->
+    <TextView
+        android:id="@+id/textViewNameLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Name - Level 1"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageViewCharacter"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp" />
+
+    <!-- XP Section -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="XP Progress" />
+
+    <ProgressBar
+        android:id="@+id/progressBarXP"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:max="100" />
+    <!-- Item Slots (Simple image views) -->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:gravity="center_horizontal">
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <!-- Name & Level -->
-        <TextView
-            android:id="@+id/textViewNameLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name - Level 1"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Character Image -->
         <ImageView
-            android:id="@+id/imageViewCharacter"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="Character" />
+            android:id="@+id/itemSlot1"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="4dp"
+            android:background="#CCC" />
 
-        <TextView
-            android:id="@+id/textViewExpLabel"
-            android:text="XP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"
-            android:layout_gravity="center_horizontal" />
-        <!-- XP Bar -->
-        <ProgressBar
-            android:id="@+id/progressBarXP"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:max="100"
-            android:progress="0"
-            android:layout_marginBottom="16dp" />
+        <ImageView
+            android:id="@+id/itemSlot2"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="4dp"
+            android:background="#CCC" />
 
-        <!-- Item Slots (Simple image views) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="16dp">
+        <ImageView
+            android:id="@+id/itemSlot3"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="4dp"
+            android:background="#CCC" />
 
-            <ImageView android:id="@+id/itemSlot1" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
-            <ImageView android:id="@+id/itemSlot2" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
-            <ImageView android:id="@+id/itemSlot3" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
-            <ImageView android:id="@+id/itemSlot4" android:layout_width="64dp" android:layout_height="64dp" android:background="#CCC" android:layout_margin="4dp"/>
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/itemSlot4"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="4dp"
+            android:background="#CCC" />
+    </LinearLayout>
+    <!-- Scrollable Chores Section -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Your Chores:" />
 
-        <!-- Chores List -->
-        <TextView
-            android:text="Your Chores:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/choresContainer"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-</ScrollView>
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <!-- Add Chore Button -->
+    <Button
+        android:id="@+id/buttonAddChore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Add New Chore" />
+</LinearLayout>

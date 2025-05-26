@@ -67,9 +67,17 @@ public class DBHelper extends SQLiteOpenHelper {
     // Add a chore
     public long addChore(String description) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("description", description);
-        return db.insert("Chores", null, values);
+        try {
+            ContentValues values = new ContentValues();
+            values.put("description", description);
+            values.put("isCompleted", 0); // Explicitly set default
+            long id = db.insert("Chores", null, values);
+            db.close();
+            return id;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     // Mark a chore as completed and award XP/Coins
