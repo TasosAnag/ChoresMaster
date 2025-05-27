@@ -104,9 +104,15 @@ public class CharacterScreen extends AppCompatActivity {
         try (Cursor cursor = dbHelper.getUser()) {
             if (cursor.moveToFirst()) {
                 xp = cursor.getInt(cursor.getColumnIndexOrThrow("xp"));
-                level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
+                // Calculate level based on XP (assuming 100 XP per level)
+                level = xp / 100 + 1;
                 progressBarXP.setProgress(xp % 100);
                 textViewNameLevel.setText(userName + " - Level " + level);
+
+                // Update the level in database if it's changed
+                if (level != cursor.getInt(cursor.getColumnIndexOrThrow("level"))) {
+                    new Thread(() -> dbHelper.completeChore(level)).start();
+                }
             }
         }
     }

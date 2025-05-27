@@ -90,19 +90,21 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("Chores", values, "id=?", new String[]{String.valueOf(choreId)});
 
         // Update XP and coins
-        Cursor cursor = db.rawQuery("SELECT xp, coins FROM User WHERE id=1", null);
+        Cursor cursor = db.rawQuery("SELECT xp, coins, level FROM User WHERE id=1", null);
         if (cursor.moveToFirst()) {
             int currentXP = cursor.getInt(0);
             int coins = cursor.getInt(1);
+            int currentLevel = cursor.getInt(2);
 
+            // Add XP and coins
             currentXP += 25;
             coins += 10;
 
-            int newLevel = 1 + (currentXP / 100); // 100 XP per level
-            int remainingXP = currentXP % 100;
+            // Calculate new level based on total XP (100 XP per level)
+            int newLevel = 1 + (currentXP / 100);
 
             ContentValues userValues = new ContentValues();
-            userValues.put("xp", remainingXP);
+            userValues.put("xp", currentXP); // Store total XP, not remainder
             userValues.put("coins", coins);
             userValues.put("level", newLevel);
 
@@ -110,6 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
     }
+
 
     public Cursor getUser() {
         SQLiteDatabase db = this.getReadableDatabase();
