@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -49,28 +50,32 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="4dp"
-            android:background="#CCC" />
+            android:background="#CCC"
+            android:contentDescription="Weapon Slot" />
 
         <ImageView
             android:id="@+id/itemSlot2"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="4dp"
-            android:background="#CCC" />
+            android:background="#CCC"
+            android:contentDescription="Headgear Slot" />
 
         <ImageView
             android:id="@+id/itemSlot3"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="4dp"
-            android:background="#CCC" />
+            android:background="#CCC"
+            android:contentDescription="Consumable Slot" />
 
         <ImageView
             android:id="@+id/itemSlot4"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="4dp"
-            android:background="#CCC" />
+            android:background="#CCC"
+            android:contentDescription="Pet Slot" />
     </LinearLayout>
 
     <!-- Scrollable Chores Section -->
@@ -110,7 +115,7 @@
             android:text="Add New Chore" />
 
         <Button
-            android:id="@+id/buttonShop"
+            android:id="@+id/buttonOpenShop"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

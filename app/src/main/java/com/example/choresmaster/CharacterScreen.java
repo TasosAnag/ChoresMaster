@@ -1,5 +1,6 @@
 package com.example.choresmaster;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 public class CharacterScreen extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_SHOP = 1;
+
     private ImageView imageViewCharacter;
     private TextView textViewNameLevel;
     private ProgressBar progressBarXP;
@@ -31,7 +34,6 @@ public class CharacterScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_screen);
 
-        // Initialize views
         imageViewCharacter = findViewById(R.id.imageViewCharacter);
         textViewNameLevel = findViewById(R.id.textViewNameLevel);
         progressBarXP = findViewById(R.id.progressBarXP);
@@ -41,8 +43,24 @@ public class CharacterScreen extends AppCompatActivity {
 
         loadUser();
         loadChores();
+        loadEquippedItems();  // Load equipped items on start
 
         buttonAddChore.setOnClickListener(v -> showAddChoreDialog());
+
+        Button buttonOpenShop = findViewById(R.id.buttonOpenShop);
+        buttonOpenShop.setOnClickListener(v -> {
+            Intent intent = new Intent(CharacterScreen.this, Shop.class);
+            startActivityForResult(intent, REQUEST_CODE_SHOP);  // Start shop for result
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_SHOP && resultCode == RESULT_OK) {
+            loadEquippedItems();  // Refresh equipped items immediately after returning from shop
+        }
     }
 
     private void loadUser() {
@@ -104,13 +122,12 @@ public class CharacterScreen extends AppCompatActivity {
         try (Cursor cursor = dbHelper.getUser()) {
             if (cursor.moveToFirst()) {
                 xp = cursor.getInt(cursor.getColumnIndexOrThrow("xp"));
-                // Calculate level based on XP (assuming 100 XP per level)
+                int currentLevelInDb = cursor.getInt(cursor.getColumnIndexOrThrow("level"));
                 level = xp / 100 + 1;
                 progressBarXP.setProgress(xp % 100);
                 textViewNameLevel.setText(userName + " - Level " + level);
 
-                // Update the level in database if it's changed
-                if (level != cursor.getInt(cursor.getColumnIndexOrThrow("level"))) {
+                if (level != currentLevelInDb) {
                     new Thread(() -> dbHelper.completeChore(level)).start();
                 }
             }
@@ -146,7 +163,6 @@ public class CharacterScreen extends AppCompatActivity {
                     addChoreToUI((int) result, description, false);
                     Toast.makeText(this, "Chore added!", Toast.LENGTH_SHORT).show();
 
-                    // Auto-scroll to show new chore
                     ScrollView scrollView = (ScrollView) choresContainer.getParent();
                     scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
                 } else {
@@ -154,5 +170,46 @@ public class CharacterScreen extends AppCompatActivity {
                 }
             });
         }).start();
+    }
+
+    // Load equipped items into their respective slots
+    private void loadEquippedItems() {
+        ImageView slotWeapon = findViewById(R.id.itemSlot1);
+        ImageView slotHeadgear = findViewById(R.id.itemSlot2);
+        ImageView slotConsumable = findViewById(R.id.itemSlot3);
+        ImageView slotPet = findViewById(R.id.itemSlot4);
+
+        // Clear slots first
+        slotWeapon.setImageResource(android.R.color.transparent);
+        slotHeadgear.setImageResource(android.R.color.transparent);
+        slotConsumable.setImageResource(android.R.color.transparent);
+        slotPet.setImageResource(android.R.color.transparent);
+
+        try (Cursor cursor = dbHelper.getEquippedItems()) {
+            while (cursor.moveToNext()) {
+                String slot = cursor.getString(cursor.getColumnIndexOrThrow("slot"));
+                String imageName = cursor.getString(cursor.getColumnIndexOrThrow("imageUri"));
+
+                int imageResId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                if (imageResId == 0) {
+                    imageResId = android.R.color.darker_gray;  // fallback image
+                }
+
+                switch (slot) {
+                    case "weapon":
+                        slotWeapon.setImageResource(imageResId);
+                        break;
+                    case "headgear":
+                        slotHeadgear.setImageResource(imageResId);
+                        break;
+                    case "consumable":
+                        slotConsumable.setImageResource(imageResId);
+                        break;
+                    case "pet":
+                        slotPet.setImageResource(imageResId);
+                        break;
+                }
+            }
+        }
     }
 }
