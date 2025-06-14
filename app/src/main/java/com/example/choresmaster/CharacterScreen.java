@@ -16,6 +16,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This activity handles the character screen.
+ */
 public class CharacterScreen extends AppCompatActivity {
 
     private static final int REQUEST_CODE_SHOP = 1;
@@ -27,7 +30,8 @@ public class CharacterScreen extends AppCompatActivity {
     private Button buttonAddChore;
     private DBHelper dbHelper;
     private String userName;
-    private int userId, level, xp;
+    private int level;
+    private int xp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +70,6 @@ public class CharacterScreen extends AppCompatActivity {
     private void loadUser() {
         try (Cursor cursor = dbHelper.getUser()) {
             if (cursor.moveToFirst()) {
-                userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
                 userName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
                 String gender = cursor.getString(cursor.getColumnIndexOrThrow("gender"));
                 level = cursor.getInt(cursor.getColumnIndexOrThrow("level"));

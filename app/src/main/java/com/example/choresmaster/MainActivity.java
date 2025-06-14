@@ -5,7 +5,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+/**
+ * This activity handles the initial launch of the app
+ * and determines which activity to start.
+ */
 public class MainActivity extends AppCompatActivity {
 
     DBHelper dbHelper;

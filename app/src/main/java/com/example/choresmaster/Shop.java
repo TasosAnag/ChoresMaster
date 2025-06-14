@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Activity for the shop.
+ */
 public class Shop extends AppCompatActivity {
 
     private DBHelper dbHelper;

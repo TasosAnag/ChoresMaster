@@ -6,6 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+/**
+ * Helper class for managing the database.
+ * An object of this class is used in every
+ * activity to access and update the database.
+ */
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "choresMaster.db";
@@ -15,6 +20,10 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * Creates the Database tables and initialises the database.
+     * @param db The database.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE User (" +
@@ -126,11 +135,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM Items", null);
     }
 
-    public Cursor getInventory() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM Inventory WHERE userId=1", null);
-    }
-
     public boolean ownsItem(int itemId) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(
@@ -165,17 +169,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return false;
-    }
-
-    public boolean isItemEquipped(int itemId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(
-                "SELECT * FROM Equipped WHERE userId=1 AND itemId=?",
-                new String[]{String.valueOf(itemId)}
-        );
-        boolean equipped = cursor.moveToFirst();
-        cursor.close();
-        return equipped;
     }
 
     public boolean equipItem(int itemId) {
