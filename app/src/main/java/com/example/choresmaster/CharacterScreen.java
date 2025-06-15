@@ -58,6 +58,19 @@ public class CharacterScreen extends AppCompatActivity {
         });
     }
 
+    /**
+     * Everytime you return from the Shop activity, this method is called and checks
+     * for items that need to be shown as equipped.
+     *
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param resultCode The integer result code returned by the child activity
+     *                   through its setResult().
+     * @param data An Intent, which can return result data to the caller
+     *               (various data can be attached to Intent "extras").
+     *
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
